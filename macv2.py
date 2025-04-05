@@ -44,11 +44,11 @@ def run_command(command):
     subprocess.call(command, shell=True)
 
 
-mac_address = get_mac_input("Enter the new MAC address (auto-colon): ")
+mac_address = get_mac_input("Enter the new MAC address : ")
 
 # Validate MAC
 if not re.match(r'^([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}$', mac_address):
-    print("❌ Invalid MAC address format.")
+    print("Invalid MAC address format.")
     exit(1)
 
 # Change MAC address
@@ -56,4 +56,4 @@ run_command("ifconfig eth0 down")
 run_command(f"ifconfig eth0 hw ether {mac_address}")
 run_command("ifconfig eth0 up")
 
-print(f"✅ MAC address changed to {mac_address}")
+print(f"MAC address changed to {mac_address}")
